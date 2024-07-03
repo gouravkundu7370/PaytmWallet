@@ -3,16 +3,17 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 async function main() {
-  const alice = await prisma.user.upsert({
+  const rahul = await prisma.user.upsert({
     where: { number: "1111111111" },
     update: {},
     create: {
+      id:1,
       number: "1111111111",
-      password: await bcrypt.hash("alice", 10),
-      name: "alice",
+      password: await bcrypt.hash("rahul", 10),
+      name: "rahul",
       Balance: {
         create: {
-          amount: 20000,
+          amount: 10000,
           locked: 0,
         },
       },
@@ -20,20 +21,21 @@ async function main() {
         create: {
           startTime: new Date(),
           status: "Success",
-          amount: 20000,
+          amount: 10000,
           token: "token__1",
           provider: "HDFC Bank",
         },
       },
     },
   });
-  const bob = await prisma.user.upsert({
+  const krish = await prisma.user.upsert({
     where: { number: "2222222222" },
     update: {},
     create: {
+      id: 2,
       number: "2222222222",
-      password: await bcrypt.hash("bob", 10),
-      name: "bob",
+      password: await bcrypt.hash("krish", 10),
+      name: "krish",
       Balance: {
         create: {
           amount: 2000,
@@ -51,7 +53,7 @@ async function main() {
       },
     },
   });
-  console.log({ alice, bob });
+  console.log({ rahul, bob });
 }
 main()
   .then(async () => {
