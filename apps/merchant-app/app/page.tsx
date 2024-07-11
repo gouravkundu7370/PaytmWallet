@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
-  
-  return <div className="text-3xl font-bold underline">Hello merchant app</div>;
+import { useBalance } from "@repo/store/balance";
+
+export default function () {
+  const balance = useBalance();
+  return <div>hi there {balance}</div>;
 }
